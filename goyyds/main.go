@@ -1,9 +1,17 @@
 package main
 
-import "github.com/goyyds/goyyds/v1"
+import (
+	"github.com/goyyds/goyyds/v1"
+	"log"
+)
 
 func main() {
-	service := goyyds.NewService()
+	var options []goyyds.Option
+	options = append(options, goyyds.Name("aaaaa"))
 
-	service.Run()
+	service := goyyds.NewService(options...)
+	err := service.Run()
+	if err != nil {
+		log.Println(err)
+	}
 }

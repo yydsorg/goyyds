@@ -25,14 +25,5 @@ type Service interface {
 type Option func(*Options)
 
 func NewService(opts ...Option) Service {
-
 	return newService(opts...)
-}
-
-func newService(opts ...Option) Service {
-	s := new(service)
-	options := newOptions(opts...)
-
-	s.opts = options
-	return s
 }
