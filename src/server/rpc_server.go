@@ -9,11 +9,11 @@ func (r *rpcServer) Version() string {
 }
 
 func (r *rpcServer) Start() error {
-	panic("implement me")
+	return nil
 }
 
 func (r *rpcServer) Stop() error {
-	panic("implement me")
+	return nil
 }
 
 func (r *rpcServer) String() string {

@@ -31,7 +31,7 @@ func newOptions(opts ...Option) Options {
 		Server: server.DefaultServer,
 
 		Context: context.Background(),
-		Signal:  false,
+		Signal:  true,
 	}
 
 	for _, o := range opts {
