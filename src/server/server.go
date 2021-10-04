@@ -5,6 +5,10 @@ type Server interface {
 	Options() Options
 }
 
+var (
+	DefaultServer Server = newRpcServer()
+)
+
 type Option func(*Options)
 
 type server struct {
@@ -12,5 +16,6 @@ type server struct {
 }
 
 func Init(option ...Option) error {
+
 	return nil
 }

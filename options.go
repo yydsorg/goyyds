@@ -26,22 +26,18 @@ type Options struct {
 
 func newOptions(opts ...Option) Options {
 	opt := Options{
-		Name: DefaultName,
-		Cmd:  cmd.DefaultCmd,
+		Name:   DefaultName,
+		Cmd:    cmd.DefaultCmd,
+		Server: server.DefaultServer,
 
 		Context: context.Background(),
 		Signal:  false,
 	}
+
 	for _, o := range opts {
 		o(&opt)
 	}
 
 	return opt
 
-}
-
-func Name(n string) Option {
-	return func(o *Options) {
-		o.Server.Init(server.Name(n))
-	}
 }

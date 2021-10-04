@@ -21,6 +21,11 @@ func newService(opts ...Option) Service {
 	s := new(service)
 	options := newOptions(opts...)
 
+	// service name
+	//serviceName := options.Server.Options().Name
+
+	log.Println(options.Server.Options().Version)
+
 	s.opts = options
 	return s
 }
@@ -49,6 +54,7 @@ func (s *service) Options() Options {
 }
 
 func (s *service) Run() error {
+	log.Println("run")
 
 	return nil
 }
@@ -59,4 +65,18 @@ func (s *service) String() string {
 
 func (s *service) Name() string {
 	return s.opts.Server.Options().Name
+}
+
+// Name of the service
+func Name(n string) Option {
+	return func(o *Options) {
+		_ = o.Server.Init(server.Name(n))
+	}
+}
+
+// Version of the service
+func Version(v string) Option {
+	return func(o *Options) {
+		_ = o.Server.Init(server.Version(v))
+	}
 }
