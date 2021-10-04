@@ -20,6 +20,8 @@ type Service interface {
 	Run() error
 	// The service implementation
 	String() string
+	// version
+	Version() string
 }
 
 type Option func(*Options)

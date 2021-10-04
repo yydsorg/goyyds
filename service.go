@@ -13,9 +13,9 @@ type service struct {
 	once sync.Once
 }
 
-var (
-	DefaultName = "GOYYDS"
-)
+func (s *service) Version() string {
+	return s.opts.Server.Version()
+}
 
 func newService(opts ...Option) Service {
 	s := new(service)
@@ -23,8 +23,6 @@ func newService(opts ...Option) Service {
 
 	// service name
 	//serviceName := options.Server.Options().Name
-
-	log.Println(options.Server.Options().Version)
 
 	s.opts = options
 	return s
@@ -40,6 +38,7 @@ func (s *service) Server() server.Server {
 
 func (s *service) Init(opts ...Option) {
 	// process options
+
 	for _, o := range opts {
 		o(&s.opts)
 	}
@@ -71,12 +70,5 @@ func (s *service) Name() string {
 func Name(n string) Option {
 	return func(o *Options) {
 		_ = o.Server.Init(server.Name(n))
-	}
-}
-
-// Version of the service
-func Version(v string) Option {
-	return func(o *Options) {
-		_ = o.Server.Init(server.Version(v))
 	}
 }

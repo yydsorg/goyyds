@@ -11,8 +11,14 @@ func Name(n string) Option {
 	}
 }
 
-func Version(v string) Option {
-	return func(o *Options) {
-		o.Version = v
+func newOptions(opt ...Option) Options {
+	opts := Options{
+		Name:    DefaultName,
+		Version: DefaultVersion,
 	}
+	for _, o := range opt {
+		o(&opts)
+	}
+
+	return opts
 }

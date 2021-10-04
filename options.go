@@ -26,7 +26,7 @@ type Options struct {
 
 func newOptions(opts ...Option) Options {
 	opt := Options{
-		Name:   DefaultName,
+		Name:   server.DefaultName,
 		Cmd:    cmd.DefaultCmd,
 		Server: server.DefaultServer,
 
