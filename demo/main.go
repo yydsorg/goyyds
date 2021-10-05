@@ -1,17 +1,23 @@
 package main
 
 import (
-	"github.com/goyyds/goyyds/v1"
+	"github.com/goyyds/goyyds"
 	"log"
 )
 
 func main() {
-	s := goyyds.NewService()
-	err := s.Run()
+
+	service := goyyds.NewService(goyyds.Name("yyds"))
+	service.Init(goyyds.BeforeStart(beforeStart), goyyds.AfterStart(afterStart), goyyds.BeforeStop(beforeStop), goyyds.AfterStop(afterStop))
+	// name
+	log.Println(service.Name())
+	// version
+	log.Println(service.Version())
+
+	err := service.Run()
 	if err != nil {
 		log.Println(err)
 	}
-
 }
 
 var (

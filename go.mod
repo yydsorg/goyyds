@@ -1,4 +1,4 @@
-module github.com/goyyds/goyyds/v1
+module github.com/goyyds/goyyds
 
 go 1.16
 

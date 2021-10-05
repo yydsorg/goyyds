@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/goyyds/goyyds/v1/plugins/cmd"
+	"github.com/goyyds/goyyds/plugins/cmd"
 	"log"
 )
 

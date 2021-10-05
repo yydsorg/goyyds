@@ -1,26 +1,30 @@
 # goyyds  [![License](https://img.shields.io/:license-apache-blue.svg)](https://opensource.org/licenses/Apache-2.0)  
 [goyyds](https://github.com/goyyds/goyyds)
 
+# Overview
 a simple rewrite of go-micro. learn from it.
 
 [micro](https://github.com/asim/go-micro)
 
-# structure
+# Structure
 
-demo/
-docs/
-goyyds.go
+- goyyds.go - goyyds
+- yyds/ - cli  is a simple, fast, and fun package for building command line apps in Go. 
+- plugins/  - plugins in goyyds
+- demo/ - example
+- docs/ - document for goyyds use
 
 
-# demo
+# Demo
 
-[demo v1](./docs/v1.md)
+- [demo](./docs/goyyds.md)
+- [cli](./docs/cli.md)
 
 ```go
 package main
 
 import (
-	"github.com/goyyds/goyyds/v1"
+	"github.com/goyyds/goyyds"
 	"log"
 )
 
