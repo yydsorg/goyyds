@@ -17,13 +17,10 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
-	"log"
-	"os"
-	"os/exec"
-
 	homedir "github.com/mitchellh/go-homedir"
+	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
+	"os"
 )
 
 var cfgFile string
@@ -41,9 +38,6 @@ to quickly create a Cobra application.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	//	Run: func(cmd *cobra.Command, args []string) { },
-	Run: func(cmd *cobra.Command, args []string) {
-		Version()
-	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -93,14 +87,4 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
-}
-
-func Version() {
-	command := exec.Command("go", "version")
-	output, err := command.Output()
-	if err != nil {
-		panic(err)
-	}
-	log.Println(string(output))
-	return
 }
