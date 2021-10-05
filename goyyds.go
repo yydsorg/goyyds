@@ -1,8 +1,8 @@
 package goyyds
 
 import (
-	"github.com/goyyds/goyyds/v1/src/client"
-	"github.com/goyyds/goyyds/v1/src/server"
+	"github.com/goyyds/goyyds/client"
+	"github.com/goyyds/goyyds/server"
 )
 
 type Service interface {
@@ -20,19 +20,12 @@ type Service interface {
 	Run() error
 	// The service implementation
 	String() string
+	// version
+	Version() string
 }
 
 type Option func(*Options)
 
 func NewService(opts ...Option) Service {
-
 	return newService(opts...)
-}
-
-func newService(opts ...Option) Service {
-	s := new(service)
-	options := newOptions(opts...)
-
-	s.opts = options
-	return s
 }

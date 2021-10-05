@@ -2,8 +2,9 @@ package goyyds
 
 import (
 	"context"
-	"github.com/goyyds/goyyds/v1/src/plugins/cmd"
-	"github.com/goyyds/goyyds/v1/src/server"
+	"github.com/goyyds/goyyds/plugins/cmd"
+	"github.com/goyyds/goyyds/server"
+	"log"
 )
 
 type Options struct {
@@ -26,22 +27,38 @@ type Options struct {
 
 func newOptions(opts ...Option) Options {
 	opt := Options{
-		Name: DefaultName,
-		Cmd:  cmd.DefaultCmd,
+		Name:   server.DefaultName,
+		Cmd:    cmd.DefaultCmd,
+		Server: server.DefaultServer,
 
 		Context: context.Background(),
-		Signal:  false,
+		Signal:  true,
 	}
-	for _, o := range opts {
+	for i, o := range opts {
+		log.Println(i)
 		o(&opt)
 	}
-
+	log.Println(opt.Cmd.Options().Name)
 	return opt
-
 }
 
-func Name(n string) Option {
+func BeforeStart(fn func() error) Option {
 	return func(o *Options) {
-		o.Server.Init(server.Name(n))
+		o.BeforeStart = append(o.BeforeStart, fn)
+	}
+}
+func AfterStart(fn func() error) Option {
+	return func(o *Options) {
+		o.AfterStart = append(o.AfterStart, fn)
+	}
+}
+func BeforeStop(fn func() error) Option {
+	return func(o *Options) {
+		o.BeforeStop = append(o.BeforeStop, fn)
+	}
+}
+func AfterStop(fn func() error) Option {
+	return func(o *Options) {
+		o.AfterStop = append(o.AfterStop, fn)
 	}
 }

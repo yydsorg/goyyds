@@ -1,5 +1,9 @@
-module github.com/goyyds/goyyds/v1
+module github.com/goyyds/goyyds
 
 go 1.16
 
-require github.com/spf13/cobra v1.2.1
+require (
+	github.com/mitchellh/go-homedir v1.0.0
+	github.com/spf13/cobra v1.2.1
+	github.com/spf13/viper v1.8.1
+)
