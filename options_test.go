@@ -2,8 +2,8 @@ package goyyds
 
 import (
 	"context"
-	"github.com/goyyds/goyyds/v1/src/plugins/cmd"
-	"github.com/goyyds/goyyds/v1/src/server"
+	"github.com/goyyds/goyyds/v1/plugins/cmd"
+	"github.com/goyyds/goyyds/v1/server"
 	"reflect"
 	"testing"
 )

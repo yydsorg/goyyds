@@ -1,8 +1,8 @@
 package goyyds
 
 import (
+	"github.com/goyyds/goyyds/v1/server"
 	"github.com/goyyds/goyyds/v1/src/client"
-	"github.com/goyyds/goyyds/v1/src/server"
 	"log"
 	"os"
 	"os/signal"
@@ -33,7 +33,7 @@ func (s *service) Init(opts ...Option) {
 }
 
 func (s *service) Options() Options {
-	panic("implement me")
+	return s.opts
 }
 
 func (s *service) Client() client.Client {

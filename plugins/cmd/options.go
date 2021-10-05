@@ -5,4 +5,5 @@ type Options struct {
 	Name        string
 	Description string
 	Version     string
+	Command     []string
 }
