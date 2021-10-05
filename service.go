@@ -128,6 +128,6 @@ func newService(opts ...Option) Service {
 // Name of the service
 func Name(n string) Option {
 	return func(o *Options) {
-		_ = o.Server.Init(server.Name(n))
+		o.Server.Init(server.Name(n))
 	}
 }

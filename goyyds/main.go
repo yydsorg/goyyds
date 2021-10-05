@@ -7,16 +7,8 @@ import (
 
 func main() {
 
-	service := goyyds.NewService()
-	service.Init(func(o *goyyds.Options) {
-		o.BeforeStart = beforeStart
-	}, func(o *goyyds.Options) {
-		o.BeforeStop = beforeStop
-	}, func(o *goyyds.Options) {
-		o.AfterStart = afterStart
-	}, func(o *goyyds.Options) {
-		o.AfterStop = afterStop
-	})
+	service := goyyds.NewService(goyyds.Name("yyds"))
+	service.Init(goyyds.BeforeStart(beforeStart), goyyds.AfterStart(afterStart), goyyds.BeforeStop(beforeStop), goyyds.AfterStop(afterStop))
 	log.Println(service.Name())
 	log.Println(service.Version())
 	err := service.Run()
@@ -26,20 +18,20 @@ func main() {
 }
 
 var (
-	beforeStart = []func() error{func() error {
+	beforeStart = func() error {
 		log.Println("beforeStart")
 		return nil
-	}}
-	afterStart = []func() error{func() error {
+	}
+	afterStart = func() error {
 		log.Println("afterStart")
 		return nil
-	}}
-	beforeStop = []func() error{func() error {
+	}
+	beforeStop = func() error {
 		log.Println("beforeStop")
 		return nil
-	}}
-	afterStop = []func() error{func() error {
+	}
+	afterStop = func() error {
 		log.Println("afterStop")
 		return nil
-	}}
+	}
 )
