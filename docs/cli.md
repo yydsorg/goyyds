@@ -2,7 +2,7 @@
 
 # install
 ```go
-    go install github.com/goyyds/goyyds/yyds
+    go install github.com/yydsorg/goyyds/yyds
 ```
 # test
 ```shell script

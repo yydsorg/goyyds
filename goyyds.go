@@ -1,8 +1,8 @@
 package goyyds
 
 import (
-	"github.com/goyyds/goyyds/client"
-	"github.com/goyyds/goyyds/server"
+	"github.com/yydsorg/goyyds/client"
+	"github.com/yydsorg/goyyds/server"
 )
 
 type Service interface {

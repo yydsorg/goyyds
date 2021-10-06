@@ -1,8 +1,8 @@
 package cmd
 
 import (
-	cmd2 "github.com/goyyds/goyyds/plugins/cmd/cmd"
 	"github.com/spf13/cobra"
+	cmd2 "github.com/yydsorg/goyyds/plugins/cmd/cmd"
 	"log"
 )
 

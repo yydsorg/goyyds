@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/goyyds/goyyds"
+	"github.com/yydsorg/goyyds"
 	"log"
 )
 
