@@ -2,15 +2,18 @@ package goyyds
 
 import (
 	"context"
+	"github.com/yydsorg/goyyds/client"
 	"github.com/yydsorg/goyyds/plugins/cmd"
 	"github.com/yydsorg/goyyds/server"
-	"log"
+	"github.com/yydsorg/goyyds/web"
 )
 
 type Options struct {
 	Name   string
 	Cmd    cmd.Cmd
 	Server server.Server
+	Client client.Client
+	Web    web.Web
 
 	// Before and After funcs
 	BeforeStart []func() error
@@ -30,15 +33,15 @@ func newOptions(opts ...Option) Options {
 		Name:   server.DefaultName,
 		Cmd:    cmd.DefaultCmd,
 		Server: server.DefaultServer,
+		Client: client.DefaultClient,
+		Web:    web.DefaultWeb,
 
 		Context: context.Background(),
 		Signal:  true,
 	}
-	for i, o := range opts {
-		log.Println(i)
+	for _, o := range opts {
 		o(&opt)
 	}
-	log.Println(opt.Cmd.Options().Name)
 	return opt
 }
 

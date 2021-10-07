@@ -4,6 +4,13 @@ type rpcServer struct {
 	opts Options
 }
 
+func newRpcServer(opts ...Option) Server {
+	options := newOptions(opts...)
+	return &rpcServer{
+		opts: options,
+	}
+}
+
 func (r *rpcServer) Version() string {
 	return r.opts.Version
 }
@@ -17,7 +24,7 @@ func (r *rpcServer) Stop() error {
 }
 
 func (r *rpcServer) String() string {
-	panic("implement me")
+	return "yyds-server"
 }
 
 func (r *rpcServer) Init(opts ...Option) error {
@@ -31,11 +38,4 @@ func (r *rpcServer) Init(opts ...Option) error {
 func (r *rpcServer) Options() Options {
 
 	return r.opts
-}
-
-func newRpcServer(opts ...Option) Server {
-	options := newOptions(opts...)
-	return &rpcServer{
-		opts: options,
-	}
 }

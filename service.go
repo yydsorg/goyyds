@@ -3,6 +3,7 @@ package goyyds
 import (
 	"github.com/yydsorg/goyyds/client"
 	"github.com/yydsorg/goyyds/server"
+	"github.com/yydsorg/goyyds/web"
 	"log"
 	"os"
 	"os/signal"
@@ -37,11 +38,15 @@ func (s *service) Options() Options {
 }
 
 func (s *service) Client() client.Client {
-	panic("implement me")
+	return s.opts.Client
 }
 
 func (s *service) Server() server.Server {
-	panic("implement me")
+	return s.opts.Server
+}
+
+func (s *service) Web() web.Web {
+	return s.opts.Web
 }
 
 func (s *service) Run() error {
@@ -68,7 +73,7 @@ func (s *service) Run() error {
 }
 
 func (s *service) String() string {
-	panic("implement me")
+	return "yyds-service"
 }
 
 func (s *service) Version() string {
