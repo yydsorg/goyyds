@@ -10,12 +10,11 @@ import (
 func init() {
 	cmd.Register(
 		&cli.Command{
-			Name:    "config",
-			Aliases: []string{"c"},
-			Usage:   "config a yyds frame",
+			Name:  "get",
+			Usage: "get information",
 			Subcommands: []*cli.Command{
 				{
-					Name:   "get",
+					Name:   "config",
 					Usage:  "get config",
 					Action: getConfig,
 					Flags: []cli.Flag{
@@ -32,9 +31,9 @@ func init() {
 					},
 				},
 				{
-					Name:   "set",
-					Usage:  "set config",
-					Action: setConfig,
+					Name:   "info",
+					Usage:  "get info",
+					Action: getInfo,
 					Flags: []cli.Flag{
 						&cli.BoolFlag{
 							Name:    "namespace",
@@ -42,11 +41,6 @@ func init() {
 							Usage:   "set a namespace",
 						},
 					},
-				},
-				{
-					Name:   "del",
-					Usage:  "del config",
-					Action: delConfig,
 				},
 			},
 		})
@@ -65,16 +59,16 @@ func getConfig(ctx *cli.Context) error {
 
 	return nil
 }
-func setConfig(ctx *cli.Context) error {
+func getInfo(ctx *cli.Context) error {
 	args := ctx.Args()
-
+	if args.Len() == 0 {
+		return cli.ShowSubcommandHelp(ctx)
+	}
 	key := args.Get(0)
-	value := args.Get(1)
-
-	log.Println("key:", key, "value:", value)
-	return nil
-}
-func delConfig(ctx *cli.Context) error {
+	if len(key) == 0 {
+		return fmt.Errorf("key cannot be blank")
+	}
+	log.Println("key:", key)
 
 	return nil
 }
