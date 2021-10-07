@@ -11,7 +11,7 @@ import (
 func main() {
 
 	w := goyyds.NewService(goyyds.Name("yyds-web")).Web()
-	err := w.Init(web.Addr(":9999"), web.Handlers(group(web.Engine())))
+	err := w.Init(web.Addr(":9999"), web.Handlers(group(&web.Engine().RouterGroup)))
 	if err != nil {
 		log.Println(err)
 	}
@@ -23,7 +23,9 @@ func main() {
 
 }
 
-func group(e *gin.Engine) *gin.RouterGroup {
+func group(e *gin.RouterGroup) *gin.RouterGroup {
 	e.GET("/get", handler.GetInfo)
-	return &e.RouterGroup
+	r := e.Group("/aaa")
+	r.GET("/info", handler.GetInfo)
+	return e
 }

@@ -6,10 +6,9 @@ import (
 )
 
 type Options struct {
-	Addr        string
-	Engine      *gin.Engine
-	RouterGroup *gin.RouterGroup
-	Context     context.Context
+	Addr    string
+	Engine  *gin.Engine
+	Context context.Context
 }
 
 func newOptions(options ...Option) Options {

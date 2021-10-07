@@ -56,7 +56,7 @@ func Addr(a string) Option {
 
 func Handlers(g *gin.RouterGroup) Option {
 	return func(o *Options) {
-		o.RouterGroup = g
+		o.Engine.RouterGroup = *g
 	}
 }
 
