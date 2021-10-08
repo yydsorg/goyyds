@@ -13,12 +13,11 @@ import (
 
 type service struct {
 	opts Options
-
 	once sync.Once
 }
 
 func (s *service) Name() string {
-	return s.opts.Server.Options().Name
+	return s.opts.Name
 }
 
 func (s *service) Init(opts ...Option) {
@@ -86,13 +85,31 @@ func (s *service) Start() error {
 			return err
 		}
 	}
-
-	if err := s.opts.Server.Start(); err != nil {
-		return err
-	}
-
-	for _, fn := range s.opts.AfterStart {
-		if err := fn(); err != nil {
+	switch s.opts.Genre {
+	case "web":
+		if err := s.opts.Web.Run(); err != nil {
+			return err
+		}
+	case "service":
+		if err := s.opts.Server.Start(); err != nil {
+			return err
+		}
+		for _, fn := range s.opts.AfterStart {
+			if err := fn(); err != nil {
+				return err
+			}
+		}
+	case "client":
+		if err := s.opts.Client.Start(); err != nil {
+			return err
+		}
+		for _, fn := range s.opts.AfterStart {
+			if err := fn(); err != nil {
+				return err
+			}
+		}
+	default:
+		if err := s.opts.Web.Run(); err != nil {
 			return err
 		}
 	}
@@ -119,7 +136,7 @@ func (s *service) Stop() error {
 	return nil
 }
 
-func newService(opts ...Option) Service {
+func newService(opts ...Option) YYDS {
 	s := new(service)
 	options := newOptions(opts...)
 
@@ -133,6 +150,12 @@ func newService(opts ...Option) Service {
 // Name of the service
 func Name(n string) Option {
 	return func(o *Options) {
-		o.Server.Init(server.Name(n))
+		o.Name = n
+	}
+}
+
+func Genre(n string) Option {
+	return func(o *Options) {
+		o.Genre = n
 	}
 }

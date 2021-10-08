@@ -9,15 +9,16 @@ import (
 )
 
 func main() {
+	//fs, _ := nfs.NewFS(env.GetBasePath())
+	//log.Println(fs)
 
-	w := goyyds.NewService(goyyds.Name("yyds-web")).Web()
-	err := w.Init(web.Addr(":9999"), web.Handlers(group(&web.Engine().RouterGroup)))
+	a := goyyds.NewYYDS(goyyds.Name("yyds-web"))
+	err := a.Web().Init(web.Addr(":9999"), web.Handlers(group(&web.Engine().RouterGroup)))
 	if err != nil {
 		log.Println(err)
 	}
-	log.Println(w.String())
-	err = w.Run()
-	if err != nil {
+	log.Println(a.Web().String())
+	if err = a.Web().Run(); err != nil {
 		log.Println(err)
 	}
 

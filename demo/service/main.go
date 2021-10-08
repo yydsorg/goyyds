@@ -7,7 +7,7 @@ import (
 
 func main() {
 
-	service := goyyds.NewService(goyyds.Name("yyds"))
+	service := goyyds.NewYYDS(goyyds.Name("yyds"), goyyds.Genre("service"))
 	service.Init(goyyds.BeforeStart(beforeStart), goyyds.AfterStart(afterStart), goyyds.BeforeStop(beforeStop), goyyds.AfterStop(afterStop))
 	// name
 	log.Println(service.Name())

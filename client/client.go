@@ -6,6 +6,7 @@ type Client interface {
 	Init(...Option) error
 	Options() Options
 	String() string
+	Start() error
 }
 
 type Option func(*Options)

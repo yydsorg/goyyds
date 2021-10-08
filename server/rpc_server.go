@@ -6,12 +6,14 @@ type rpcServer struct {
 
 func newRpcServer(opts ...Option) Server {
 	options := newOptions(opts...)
-	return &rpcServer{
+	server := &rpcServer{
 		opts: options,
 	}
+	return Server(server)
 }
 
 func (r *rpcServer) Version() string {
+
 	return r.opts.Version
 }
 

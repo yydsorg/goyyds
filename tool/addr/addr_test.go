@@ -70,12 +70,12 @@ func TestAppendPrivateBlocks(t *testing.T) {
 			expect: false,
 		},
 		{
-			name:   "bbb",
+			name:   "ccc",
 			addr:   "47.104.16.19",
 			expect: true,
 		},
 		{
-			name:   "ccc",
+			name:   "ddd",
 			addr:   "10.1.1.1",
 			expect: true,
 		},

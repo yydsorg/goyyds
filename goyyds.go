@@ -6,7 +6,7 @@ import (
 	"github.com/yydsorg/goyyds/web"
 )
 
-type Service interface {
+type YYDS interface {
 	// The service name
 	Name() string
 	// Init initialises options
@@ -29,6 +29,6 @@ type Service interface {
 
 type Option func(*Options)
 
-func NewService(opts ...Option) Service {
+func NewYYDS(opts ...Option) YYDS {
 	return newService(opts...)
 }
