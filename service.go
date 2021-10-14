@@ -124,8 +124,14 @@ func (s *service) Stop() error {
 		}
 	}
 
-	if err := s.opts.Server.Stop(); err != nil {
-		return err
+	switch s.opts.Genre {
+	case "web":
+	case "service":
+		if err := s.opts.Server.Stop(); err != nil {
+			return err
+		}
+	case "client":
+	default:
 	}
 
 	for _, fn := range s.opts.AfterStop {
