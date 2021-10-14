@@ -19,7 +19,6 @@ type GetInfoRsp struct {
 func GetInfo(c *gin.Context) {
 	req := new(GetInfoReq)
 	rsp := new(GetInfoRsp)
-
 	defer func() {
 		c.JSON(http.StatusOK, rsp)
 	}()
@@ -41,8 +40,20 @@ func GetInfo(c *gin.Context) {
 	}
 
 	if file != nil {
-		if err := c.SaveUploadedFile(file, env.GetPublicPath()); err != nil {
-			fail(-1, "fail")
+		log.Println("pub", env.GetPublicPath())
+		if err := c.SaveUploadedFile(file, env.GetPublicPath()+string(env.Separator)+file.Filename); err != nil {
+			log.Println(err)
+			fail(-1, "fail1")
+			return
+		}
+	}
+
+	if file != nil {
+		log.Println("priv", env.GetPrivatePath())
+
+		if err := c.SaveUploadedFile(file, env.GetPrivatePath()+string(env.Separator)+file.Filename); err != nil {
+			log.Println(err)
+			fail(-1, "fail2")
 			return
 		}
 	}

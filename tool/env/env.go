@@ -7,6 +7,11 @@ import (
 	"path/filepath"
 )
 
+const (
+	Separator     = os.PathSeparator     // 路径分隔符（分隔路径元素）
+	ListSeparator = os.PathListSeparator // 路径列表分隔符（分隔多个路径）
+)
+
 func GetENV(k, defaultV string) string {
 	env := os.Getenv(k)
 	if env == "" {
@@ -32,13 +37,13 @@ func GetBasePath() string {
 }
 
 func GetPublicPath() string {
-	return GetBasePath() + "/pub"
+	return GetBasePath() + string(Separator) + "pub"
 }
 func GetPrivatePath() string {
-	return GetBasePath() + "/pri"
+	return GetBasePath() + string(Separator) + "priv"
 }
 func GetTempPath() string {
-	return GetBasePath() + "/temp"
+	return GetBasePath() + string(Separator) + "temp"
 }
 
 func GetPublicUrlPath() string {

@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	//fs, _ := nfs.NewFS(env.GetBasePath())
+	//fs, _ := nfs.NewFS(env.GetPublicPath())
 	//log.Println(fs)
 
 	a := goyyds.NewYYDS(goyyds.Name("yyds-web"))
@@ -18,14 +18,14 @@ func main() {
 		log.Println(err)
 	}
 	log.Println(a.Web().String())
-	if err = a.Web().Run(); err != nil {
+	if err = a.Run(); err != nil {
 		log.Println(err)
 	}
 
 }
 
 func group(e *gin.RouterGroup) *gin.RouterGroup {
-	e.GET("/get", handler.GetInfo)
+	e.POST("/info", handler.GetInfo)
 	r := e.Group("/aaa")
 	r.GET("/info", handler.GetInfo)
 	return e
