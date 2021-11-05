@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  creationTimestamp: "2021-11-05T02:59:59Z"
+  finalizers:
+  - kubernetes.io/pv-protection
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:phase: {}
+    manager: k3s
+    operation: Update
+    time: "2021-11-05T02:59:59Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:accessModes: {}
+        f:capacity:
+          .: {}
+          f:storage: {}
+        f:hostPath:
+          .: {}
+          f:path: {}
+          f:type: {}
+        f:persistentVolumeReclaimPolicy: {}
+        f:volumeMode: {}
+    manager: rancher
+    operation: Update
+    time: "2021-11-05T02:59:59Z"
+  name: zhenxi-v1-pv1
+  resourceVersion: "2061057"
+  uid: 0539bee6-1cda-4741-bd58-ae70767eaccf
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 10Gi
+  hostPath:
+    path: /home/data/zhenxi-v1
+    type: ""
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+status:
+  phase: Available
