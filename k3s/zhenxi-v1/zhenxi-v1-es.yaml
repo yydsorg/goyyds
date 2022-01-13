@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: es
+  labels:
+    workload.user.cattle.io/workloadselector: apps.deployment-zhenxi-v1-es
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: es
+      labels:
+        workload.user.cattle.io/workloadselector: apps.deployment-zhenxi-es
+    spec:
+      containers:
+        - image: elasticsearch:7.4.2
+          imagePullPolicy: IfNotPresent
+          name: es
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-zhenxi-v1-es

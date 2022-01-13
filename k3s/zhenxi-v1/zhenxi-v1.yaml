@@ -40,11 +40,10 @@ metadata:
   namespace: zhenxi-v1
   name: redis2
 spec:
-  selector:
-    matchLabels:
-      workload.user.cattle.io/workloadselector: apps.deployment-zhenxi-v1-redis2
+  replicas: 1
   template:
     metadata:
+      name: redis2
       labels:
         workload.user.cattle.io/workloadselector: apps.deployment-zhenxi-v1-redis2
     spec:
@@ -59,6 +58,9 @@ spec:
         - name: zhenxi-v1-redis2
           persistentVolumeClaim:
             claimName: zhenxi-v1-redis2
+  selector:
+    matchLabels:
+      workload.user.cattle.io/workloadselector: apps.deployment-zhenxi-v1-redis2
 
 
 
