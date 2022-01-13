@@ -2,15 +2,20 @@ package goyyds
 
 import (
 	"context"
+	"github.com/yydsorg/goyyds/client"
 	"github.com/yydsorg/goyyds/plugins/cmd"
 	"github.com/yydsorg/goyyds/server"
+	"github.com/yydsorg/goyyds/web"
 	"log"
 )
 
 type Options struct {
 	Name   string
+	Genre  string
 	Cmd    cmd.Cmd
 	Server server.Server
+	Client client.Client
+	Web    web.Web
 
 	// Before and After funcs
 	BeforeStart []func() error
@@ -26,19 +31,34 @@ type Options struct {
 }
 
 func newOptions(opts ...Option) Options {
+
 	opt := Options{
-		Name:   server.DefaultName,
-		Cmd:    cmd.DefaultCmd,
-		Server: server.DefaultServer,
+		Name: server.DefaultName,
+		Cmd:  cmd.DefaultCmd,
+		//Server: server.DefaultServer,
+		//Client: client.DefaultClient,
+		//Web:    web.DefaultWeb,
 
 		Context: context.Background(),
 		Signal:  true,
 	}
-	for i, o := range opts {
-		log.Println(i)
+
+	for _, o := range opts {
 		o(&opt)
 	}
-	log.Println(opt.Cmd.Options().Name)
+
+	log.Println(opt.Genre)
+	switch opt.Genre {
+	case "web":
+		opt.Web = web.DefaultWeb
+	case "service":
+		opt.Server = server.DefaultServer
+	case "client":
+		opt.Client = client.DefaultClient
+	default:
+		opt.Web = web.DefaultWeb
+	}
+
 	return opt
 }
 

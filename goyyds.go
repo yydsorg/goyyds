@@ -3,9 +3,10 @@ package goyyds
 import (
 	"github.com/yydsorg/goyyds/client"
 	"github.com/yydsorg/goyyds/server"
+	"github.com/yydsorg/goyyds/web"
 )
 
-type Service interface {
+type YYDS interface {
 	// The service name
 	Name() string
 	// Init initialises options
@@ -16,6 +17,8 @@ type Service interface {
 	Client() client.Client
 	// Server is for handling requests and events
 	Server() server.Server
+	// web
+	Web() web.Web
 	// Run the service
 	Run() error
 	// The service implementation
@@ -26,6 +29,6 @@ type Service interface {
 
 type Option func(*Options)
 
-func NewService(opts ...Option) Service {
+func NewYYDS(opts ...Option) YYDS {
 	return newService(opts...)
 }
